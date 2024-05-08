@@ -3,7 +3,8 @@
 TO DO:
 | Item | Done or not |
 |------|-------------|
-|create random lattice | DONE |
+| create random lattice | DONE |
+| periodic boundary conditions | |
 | interaction function | |
 | magnetic moment function | |
 | external influece function | |
@@ -12,44 +13,10 @@ TO DO:
 | choice changing function for some number of times | |
 
 
-## Ising Model
-The Ising model is a mathematical model of ferromagnetism in statistical mechanics. The model consists of discrete variables that represent the atomic spins of atoms in a lattice, which can be either $+1$ or $-1$. Neighboring spins that have the same spin, have a lower energy than those that do not. 
-
-The Hamiltonian of the basic Ising model is given by
-$$H = - \sum_{\langle i,j \rangle} J_{ij} \sigma_i \sigma_j - h \sum_i \mu_i \sigma_i,$$
-where $J_{ij}$ is the interaction between lattice site $i$ and $j$, $\sigma_k \in \{-1,+1\}$ ($k \in$ lattice), $\mu_i$ is the magnetic moment and determines how strong the spin of lattice site $i$ interacts with the external field $h$. The notation $\langle i,j \rangle$ indicates that sites $i$ and $j$ are nearest neighbors (NN). There are three cases for value or sign of $J_{ij}$:
-- $J_{ij} > 0$: the spins favor to line up with the spins on neighbouring sites in the same direction (ferromagnetism);
-- $J_{ij} < 0$: the spins favor anti-alignment of spins on neighbouring sites (ant-ferromagnetism);
-- $J_{ij} = 0$: no interaction between neighboring spin sites.
-
-Simmilarly, for external field $h$ the cases are:
-- $h > 0$: the spin site $j$ favor to line up in the positive direction
-- $h < 0$: the spin site $j$ favor to line up in the negative direction
-- $h = 0$: there is no external field influence on the spins
-
-On a 1D lattice, site $i$ has coordinate $i$. On a 2D lattice, every site is characterized by two coordinates $(i_1,i_2)$. It is then trivial to extend this to $N$ dimensions, where every site has $N$ coordinates $(i_1,\ldots, i_N)$.
-
-The figure below is a representation of a $2D$ lattice, where the red arrows go from site $(i_1,i_2)$ its nearest neighbours. 
-
-<img src="./Lattice.png" width="390">
-
-The probability of accepting the spin flip is given by
-$$p_i = \min\left( 1, \exp{(-\beta \Delta E_i)} \right),$$
-where 
-$$\beta = 1/ (k_BT)$$
-is the inverse temperature,
-$$\Delta E_i = E_{k,i} - E_0 = 2\sigma_i \sum_{j: \langle i,j \rangle} J_{ij} \sigma_j + 2 h \mu_i \sigma_i \quad \text{for fixed i}$$
-is the energy of site $i$.
-
 ## The Model and its Assumptions
 I postulate that a lattice model can describe social behaviour of large groups. In this model I use the Ising model as basis to model the choice behaviour of groups of people that are given a binary choice: $+1$ or $-1$. One can assign any binary choice to either values.
 
 Below the model and its assumptions is explained and discussed.
-
-### Dimension of the model
-In a square lattice the number of NN are $2d$, where $d$ is the dimension of the lattice. This model assumes that the average person can be influenced by its NN. For computational simplicity and for visualization purposes, this model assumes that the lattice is 2D, which limits the number of NN to four. Thus there are four people that can directly influence a person. The assumption that every person has four close relations which may be able to influence that person is not very unrealistic, although real life relations are much more complex. 
-
-This model is a 2D and thus uses a finite 2D rectangular lattice. If every person needs to have four NN, the boundaries need to be periodic. The lattice therefore has the geometry of a two dimensional torus.
 
 ### Interaction between NN sites $J$
 For the interaction term between NN I have chosen that the people act like a ferromagnetic lattice, such that it is favorable for people to align their choice or opinion with their NN. $J$ is a $4$ dimensional matrix: $J_{(ij)(kl)}$. Where between the brackets are the lattice site coordinates, and where $k \in \{ i-1,i,i+1 \}$ and $j \in \{ j-1,j,j+1 \}$, bcause we are dealing with NN interactions. Then for a lattice site at coordinate $(i_1,i_2)$ the matrix looks like:
@@ -88,14 +55,3 @@ $$p_{\text{accept},i} = \min\left( 1, e^{-\beta \Delta E_i} \right).$$
 It is trivial to see that the rejection probability it 
 $$p_{\text{reject},i} = 1 - p_{\text{accept},i}.$$
 It may not be favorable (and realistic) to have sites (people) changing spin (opinion or choice) every iteration, if one does multiple iterations of the algorithm. Thus I have implemented a rule that states that the probability is smaller by a factor of $2$ when it has changed its sign in the last iteration.
-
-### Overview of the model
-- flow chart maybe? Or something? I don't know yet.
-
-## Using the Code
-- Calling function which models
-- Calling function which plots
-- Calling function which animates
-
-## Diving into the Model
-- Go through code and explain
