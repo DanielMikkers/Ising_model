@@ -1,10 +1,5 @@
 import numpy as np
-
-choice_dict = {'binary': np.array([-1,1]),
-               'ternary': np.array([-1,0,1]),
-               'quaternary': np.array([-2,-1,1,2]),
-               'quinary': np.array([-2,-1,0,1,2])
-               }
+from metropolis import TimeEvolution
 
 class RandomLattice:
 
@@ -13,10 +8,12 @@ class RandomLattice:
 
     return int(sqrt_n)
 
-  def random_lattice(self, n_sites, model='binary', prob=np.array([0.5,0.5])):
+  def random_lattice(self, n_sites, spin, prob=None):
     sqrt_size = self.perf_square(n_sites)
     size = (sqrt_size,sqrt_size)
-    choice = choice_dict[model]
-    lattice = np.random.uniform(choice, size=size, p=prob)
+    spin_arr = TimeEvolution.spin_array(spin)
+    if prob is None:
+      prob = np.ones(spin+1)/(spin+1)
+    lattice = np.random.uniform(spin_arr, size=size, p=prob)
 
     return lattice
