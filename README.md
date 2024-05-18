@@ -55,6 +55,10 @@ Both $\mu$ and $h$ being site dependent is overkill. Therefore I would choose ei
 
 For a $d$-dimensional lattice a $d$-dimensional coordinate vector is needed to express the location of the lattice site. A visual example of a 2D square lattice is given below, where the red arrows represent the connection of site $(i_1,i_2)$ to its nearest neighbours. In a $d$-dimensional square lattice the number of nearest neighbours is $2d$, so in two dimensions the number of nearest neighbours is 4. I believe it is also possible to have different lattice configurations, such as hexagonal, but computationally and visually square lattices are easy. 
 
+<p align="center">
+<img src="https://github.com/DanielMikkers/Ising_model/blob/main/lattice.png" width="60%" height="60%">
+</p>
+
 ## Translation to Groups
 The main idea is that one can think people in a group making binary decisions as a lattice with spins $+1$ and $-1$. The spins represent the decisions which can be made. Each individual person represents a lattice site and their neighbouring sites represent the people closest to that person that can effect the choice a person makes. The closer sites are (like NN) the more the they effect the lattice site in question.
 
