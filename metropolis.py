@@ -4,6 +4,10 @@ from interaction import IntType
 from utils import spin_array
 
 class SpinChange:
+    """
+    Class which determines the new lattice configuration given the energy of the old lattice,
+    using the Metropolis algorithm. This algorithm takes in 
+    """
     def __init__(self, spin) -> None:
         self.spin = spin
 
