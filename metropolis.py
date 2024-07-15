@@ -7,9 +7,9 @@ class SpinChange:
     """
     Class to represent to spin change for the lattice in one time iteration.
     
-    Attributes
+    Args:
     ----------
-    spin:   integer value. This value is only relevant if general spin function 
+    spin:   int. This value is only relevant if general spin function 
             (gen_spin_change) is called. In turn this value is used to generate
             array of possible spins given the spin value
 
@@ -84,7 +84,7 @@ class SpinChange:
 
         Input
         ----------
-        lattice:     2d array. The old lattice with spin values (-1,+1);
+        lattice:     2d array. The old lattice with spin values (-s,...,s) or (-s,...,-1,1,...,s);
         interaction: 2d array. The interaction array (e.g. nearest neighbor interaction);
         frustration: 2d array. The frustration array of the system.
         beta:        float. The inverse temperature, i.e. how much randomness there is 
@@ -129,9 +129,11 @@ class TimeEvolution:
     """
     Class to obtain the time evolution of the spin system.
 
-    Attributes
+    Args:
     ----------
-    spin:           int
+    spin:           int. This value is only relevant if general spin function 
+                    (gen_spin_change) is called. In turn this value is used to generate
+                    array of possible spins given the spin value
     beta:           float. 
     h:              NoneType or 2d array
     interaction:    string.
